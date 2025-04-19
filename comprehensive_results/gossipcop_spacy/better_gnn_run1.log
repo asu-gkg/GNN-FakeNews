@@ -1,0 +1,30 @@
+
+ERRORS:
+Processing...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/asu/Desktop/GNN-FakeNews/gnn_model/better_gnn.py", line 97, in <module>
+    dataset = FNNDataset(root='data', feature=args.feature, name=args.dataset, transform=transforms)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asu/Desktop/GNN-FakeNews/utils/data_loader.py", line 171, in __init__
+    super(FNNDataset, self).__init__(root, transform, pre_transform, pre_filter)
+  File "/home/asu/miniconda3/lib/python3.12/site-packages/torch_geometric/data/in_memory_dataset.py", line 81, in __init__
+    super().__init__(root, transform, pre_transform, pre_filter, log,
+  File "/home/asu/miniconda3/lib/python3.12/site-packages/torch_geometric/data/dataset.py", line 115, in __init__
+    self._process()
+  File "/home/asu/miniconda3/lib/python3.12/site-packages/torch_geometric/data/dataset.py", line 262, in _process
+    self.process()
+  File "/home/asu/Desktop/GNN-FakeNews/utils/data_loader.py", line 208, in process
+    self.data, self.slices = read_graph_data(self.raw_dir, self.feature)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asu/Desktop/GNN-FakeNews/utils/data_loader.py", line 58, in read_graph_data
+    node_attributes = sp.load_npz(folder + f'new_{feature}_feature.npz')
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asu/miniconda3/lib/python3.12/site-packages/scipy/sparse/_matrix_io.py", line 134, in load_npz
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asu/miniconda3/lib/python3.12/site-packages/numpy/lib/_npyio_impl.py", line 451, in load
+    fid = stack.enter_context(open(os.fspath(file), "rb"))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/gossipcop/raw/new_spacy_feature.npz'

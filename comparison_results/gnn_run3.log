@@ -1,0 +1,56 @@
+Namespace(seed=44, device='cuda:0', dataset='politifact', batch_size=64, lr=0.01, weight_decay=0.01, nhid=128, dropout_ratio=0.0, epochs=30, concat=True, multi_gpu=False, feature='bert', model='sage', analysis_mode='none', num_classes=2, num_features=768)
+loss_train: 0.6966, acc_train: 0.5000, recall_train: 0.0000, auc_train: 0.4620, loss_val: 1.8120, acc_val: 0.5161, recall_val: 1.0000, auc_val: 0.9250
+loss_train: 1.8875, acc_train: 0.5000, recall_train: 1.0000, auc_train: 0.7794, loss_val: 0.9999, acc_val: 0.4839, recall_val: 0.0000, auc_val: 0.5250
+loss_train: 0.9635, acc_train: 0.5000, recall_train: 0.0000, auc_train: 0.5390, loss_val: 0.7236, acc_val: 0.4839, recall_val: 0.0000, auc_val: 0.7667
+loss_train: 0.7069, acc_train: 0.5000, recall_train: 0.0000, auc_train: 0.8439, loss_val: 0.7627, acc_val: 0.5161, recall_val: 1.0000, auc_val: 0.5625
+loss_train: 0.7731, acc_train: 0.5000, recall_train: 1.0000, auc_train: 0.5921, loss_val: 0.6733, acc_val: 0.5484, recall_val: 1.0000, auc_val: 0.9750
+loss_train: 0.6713, acc_train: 0.5968, recall_train: 1.0000, auc_train: 0.8970, loss_val: 0.7211, acc_val: 0.4839, recall_val: 0.0000, auc_val: 0.9458
+loss_train: 0.7003, acc_train: 0.5000, recall_train: 0.0000, auc_train: 0.9199, loss_val: 0.6648, acc_val: 0.4839, recall_val: 0.0000, auc_val: 0.9667
+loss_train: 0.6485, acc_train: 0.5484, recall_train: 0.0968, auc_train: 0.9292, loss_val: 0.6428, acc_val: 0.8387, recall_val: 1.0000, auc_val: 0.9667
+loss_train: 0.6322, acc_train: 0.7903, recall_train: 0.9677, auc_train: 0.9168, loss_val: 0.6310, acc_val: 0.6129, recall_val: 1.0000, auc_val: 0.9708
+loss_train: 0.6186, acc_train: 0.7097, recall_train: 1.0000, auc_train: 0.9376, loss_val: 0.5971, acc_val: 0.8710, recall_val: 0.8125, auc_val: 0.9625
+loss_train: 0.5774, acc_train: 0.9194, recall_train: 0.9032, auc_train: 0.9657, loss_val: 0.5820, acc_val: 0.6452, recall_val: 0.3125, auc_val: 0.9542
+loss_train: 0.5482, acc_train: 0.7258, recall_train: 0.4516, auc_train: 0.9792, loss_val: 0.5328, acc_val: 0.8065, recall_val: 0.6250, auc_val: 0.9542
+loss_train: 0.4931, acc_train: 0.7742, recall_train: 0.5806, auc_train: 0.9823, loss_val: 0.4765, acc_val: 0.8710, recall_val: 0.8750, auc_val: 0.9583
+loss_train: 0.4354, acc_train: 0.9516, recall_train: 1.0000, auc_train: 0.9854, loss_val: 0.4232, acc_val: 0.8710, recall_val: 0.8750, auc_val: 0.9542
+loss_train: 0.3599, acc_train: 0.9839, recall_train: 1.0000, auc_train: 0.9886, loss_val: 0.4326, acc_val: 0.8065, recall_val: 0.6875, auc_val: 0.9458
+loss_train: 0.3207, acc_train: 0.8387, recall_train: 0.6774, auc_train: 0.9906, loss_val: 0.4241, acc_val: 0.8387, recall_val: 1.0000, auc_val: 0.9458
+loss_train: 0.3119, acc_train: 0.8226, recall_train: 1.0000, auc_train: 0.9886, loss_val: 0.3770, acc_val: 0.8065, recall_val: 0.7500, auc_val: 0.9458
+loss_train: 0.2160, acc_train: 0.9194, recall_train: 0.8387, auc_train: 0.9948, loss_val: 0.3385, acc_val: 0.8387, recall_val: 0.8125, auc_val: 0.9458
+loss_train: 0.1594, acc_train: 0.9677, recall_train: 0.9677, auc_train: 0.9969, loss_val: 0.3725, acc_val: 0.8387, recall_val: 1.0000, auc_val: 0.9458
+loss_train: 0.1766, acc_train: 0.9516, recall_train: 1.0000, auc_train: 0.9990, loss_val: 0.3274, acc_val: 0.8710, recall_val: 0.8125, auc_val: 0.9458
+loss_train: 0.0957, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.3697, acc_val: 0.8710, recall_val: 0.8125, auc_val: 0.9500
+loss_train: 0.0926, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.3435, acc_val: 0.8710, recall_val: 0.9375, auc_val: 0.9417
+loss_train: 0.0715, acc_train: 0.9839, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.3369, acc_val: 0.8387, recall_val: 0.8750, auc_val: 0.9417
+loss_train: 0.0412, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4013, acc_val: 0.8387, recall_val: 0.7500, auc_val: 0.9417
+loss_train: 0.0433, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.3697, acc_val: 0.9032, recall_val: 0.8750, auc_val: 0.9417
+loss_train: 0.0213, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4060, acc_val: 0.8387, recall_val: 0.9375, auc_val: 0.9375
+loss_train: 0.0222, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4170, acc_val: 0.8710, recall_val: 0.9375, auc_val: 0.9417
+loss_train: 0.0169, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4039, acc_val: 0.8387, recall_val: 0.8125, auc_val: 0.9333
+loss_train: 0.0115, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4451, acc_val: 0.8387, recall_val: 0.7500, auc_val: 0.9333
+loss_train: 0.0160, acc_train: 1.0000, recall_train: 1.0000, auc_train: 1.0000, loss_val: 0.4129, acc_val: 0.8387, recall_val: 0.8750, auc_val: 0.9333
+Test set results: acc: 0.8054, f1_macro: 0.8042, f1_micro: 0.8054, precision: 0.8463, recall: 0.7480, auc: 0.8641, ap: 0.8331
+
+ERRORS:
+/home/asu/miniconda3/lib/python3.12/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+
+  0%|          | 0/30 [00:00<?, ?it/s]
+  3%|▎         | 1/30 [00:00<00:06,  4.27it/s]
+ 10%|█         | 3/30 [00:00<00:03,  8.39it/s]
+ 17%|█▋        | 5/30 [00:00<00:02, 10.11it/s]
+ 23%|██▎       | 7/30 [00:01<00:04,  4.86it/s]
+ 27%|██▋       | 8/30 [00:01<00:05,  4.17it/s]
+ 33%|███▎      | 10/30 [00:02<00:05,  3.75it/s]
+ 37%|███▋      | 11/30 [00:02<00:05,  3.50it/s]
+ 43%|████▎     | 13/30 [00:02<00:04,  3.96it/s]
+ 47%|████▋     | 14/30 [00:03<00:04,  3.62it/s]
+ 53%|█████▎    | 16/30 [00:03<00:03,  4.01it/s]
+ 57%|█████▋    | 17/30 [00:04<00:03,  3.73it/s]
+ 60%|██████    | 18/30 [00:04<00:03,  3.43it/s]
+ 67%|██████▋   | 20/30 [00:04<00:02,  4.00it/s]
+ 77%|███████▋  | 23/30 [00:04<00:01,  6.48it/s]
+ 80%|████████  | 24/30 [00:05<00:01,  5.11it/s]
+ 90%|█████████ | 27/30 [00:05<00:00,  5.64it/s]
+ 97%|█████████▋| 29/30 [00:05<00:00,  7.12it/s]
+100%|██████████| 30/30 [00:06<00:00,  4.79it/s]

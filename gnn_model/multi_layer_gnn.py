@@ -1,6 +1,12 @@
 import torch
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv, SAGEConv, GATConv, global_max_pool as gmp
+import os
+import time
+import matplotlib
+matplotlib.use('Agg')  # 使用非交互式后端
+import matplotlib.pyplot as plt
+import numpy as np
 
 class MultiLayerGNN(torch.nn.Module):
     """
@@ -98,11 +104,7 @@ def layer_analysis(args, test_loader, max_layers=5):
     返回:
         results: 包含不同层数模型性能的字典
     """
-    import time
     from utils.eval_helper import eval_deep
-    import matplotlib.pyplot as plt
-    import numpy as np
-    import os
     
     results = {
         'num_layers': [],
@@ -191,6 +193,7 @@ def layer_analysis(args, test_loader, max_layers=5):
     
     plt.tight_layout()
     plt.savefig(f'{output_dir}/{args.model}_layer_analysis.png', dpi=300, bbox_inches='tight')
+    plt.close()  # 确保图像关闭
     
     # 分析最优层数
     best_layer = results['num_layers'][np.argmax(results['acc'])]

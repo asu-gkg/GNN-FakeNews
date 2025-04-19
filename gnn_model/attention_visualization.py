@@ -1,6 +1,8 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')  # 使用非交互式后端
 import matplotlib.pyplot as plt
 import networkx as nx
 from torch_geometric.nn import GATConv

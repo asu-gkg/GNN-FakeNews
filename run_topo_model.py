@@ -1,31 +1,81 @@
+# ✅ 使用真实 GossipCop 数据集，绘制拓扑结构分析图（使用 FNNDataset 和 extract_graph_features）
 import os
-import argparse
+import numpy as np
+import torch
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+from torch_geometric.utils import to_networkx
+import networkx as nx
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--dataset', type=str, default='politifact', help='[politifact, gossipcop]')
-parser.add_argument('--feature', type=str, default='profile', help='[profile, bert, spacy, content]')
-parser.add_argument('--model', type=str, default='gcn', help='[gcn, sage, gat]')
-parser.add_argument('--batch_size', type=int, default=64, help='batch size')
-parser.add_argument('--use_topo', type=bool, default=True, help='whether to use topological features')
+# 真实模块导入路径（以下模块需保证在项目中存在）
+from utils.data_loader import FNNDataset, ToUndirected
+from gnn_model.gnn_topo import extract_graph_features
 
-args = parser.parse_args()
+# 设置参数
+dataset_name = 'politifact'
+feature_type = 'profile'
 
-# 设置命令
-if args.use_topo:
-    cmd = f"PYTHONPATH=. python gnn_model/gnn_topo.py --dataset {args.dataset} --model {args.model} --feature {args.feature} --batch_size {args.batch_size} --topo_features True"
-else:
-    cmd = f"PYTHONPATH=. python gnn_model/gnn.py --dataset {args.dataset} --model {args.model} --feature {args.feature} --batch_size {args.batch_size}"
+# 加载真实数据集
+dataset = FNNDataset(root='data', feature=feature_type, empty=False, name=dataset_name, transform=ToUndirected())
 
-# 运行模型
-print(f"执行命令: {cmd}")
-os.system(cmd)
+# 提取图拓扑特征与标签
+topo_features = []
+labels = []
+graph_sizes = []
 
-print("\n模型运行完成!")
-print(f"数据集: {args.dataset}")
-print(f"特征类型: {args.feature}")
-print(f"模型类型: {args.model}")
-print(f"拓扑特征: {'已使用' if args.use_topo else '未使用'}")
-print("\n下一步建议尝试:")
-print("1. 运行analyze_topo_features.py查看图拓扑特征分析")
-print("2. 修改--use_topo参数比较有无拓扑特征的模型差异")
-print("3. 尝试不同的数据集、特征类型或模型结构") 
+for i in range(len(dataset)):
+    data = dataset[i]
+    topo_feat = extract_graph_features(data)
+    topo_features.append(topo_feat.numpy())
+    labels.append(data.y.item())
+    graph_sizes.append(data.num_nodes)
+
+topo_features = np.array(topo_features)
+labels = np.array(labels)
+graph_sizes = np.array(graph_sizes)
+
+# 特征名
+feature_names = ['Average Degree', 'Degree Centrality', 'Clustering Coefficient', 'Graph Density', 'Node Count']
+
+# 构造 DataFrame
+df = pd.DataFrame(topo_features, columns=feature_names)
+df['label'] = labels
+df['graph_size'] = graph_sizes
+df['Label'] = df['label'].map({0: 'Real News', 1: 'Fake News'})
+
+# 使用统一的 subplot 绘图结构
+fig, axs = plt.subplots(2, 2, figsize=(15, 10))
+sns.set(style="whitegrid")
+
+# 1. Boxplot
+df_melted = pd.melt(df, id_vars=['Label'], value_vars=feature_names, var_name='Feature', value_name='Value')
+sns.boxplot(x='Feature', y='Value', hue='Label', data=df_melted, ax=axs[0, 0])
+axs[0, 0].set_title(f'{dataset_name.capitalize()} Dataset: Topological Feature Distribution')
+axs[0, 0].tick_params(axis='x', rotation=45)
+
+# 2. Scatter plot
+x_feature, y_feature = 'Average Degree', 'Clustering Coefficient'
+sns.scatterplot(data=df, x=x_feature, y=y_feature, hue='Label', style='Label', palette='Set1', alpha=0.7, ax=axs[0, 1])
+axs[0, 1].set_title(f'{x_feature} vs {y_feature}')
+
+# 3. Histogram
+sns.histplot(data=df, x='Node Count', hue='Label', element='step', stat='density', bins=30, palette='Set2', ax=axs[1, 0])
+axs[1, 0].set_title('Propagation Graph Size Distribution')
+
+# 4. Heatmap
+corr = df[feature_names].corr()
+mask = np.triu(np.ones_like(corr, dtype=bool))
+sns.heatmap(corr, mask=mask, cmap="coolwarm", vmax=1, vmin=-1, center=0,
+            square=True, linewidths=.5, annot=True, fmt=".2f", ax=axs[1, 1])
+axs[1, 1].set_title('Topological Feature Correlation')
+
+# 保存图像
+fig.tight_layout(pad=2.5)
+output_path = f"./data/{dataset_name}_{feature_type}_topo_analysis_real.png"
+fig.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.close(fig)
+
+output_path

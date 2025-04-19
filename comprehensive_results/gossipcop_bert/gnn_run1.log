@@ -1,0 +1,109 @@
+Namespace(seed=42, device='cuda:0', dataset='gossipcop', batch_size=64, lr=0.01, weight_decay=0.01, nhid=128, dropout_ratio=0.0, epochs=50, concat=True, multi_gpu=False, feature='bert', model='sage', analysis_mode='none', num_classes=2, num_features=768)
+loss_train: 14.5987, acc_train: 0.6392, recall_train: 0.5654, auc_train: 0.7181, loss_val: 4.0196, acc_val: 0.8260, recall_val: 0.6879, auc_val: 0.9684
+loss_train: 4.3525, acc_train: 0.9341, recall_train: 0.9414, auc_train: 0.9550, loss_val: 1.6107, acc_val: 0.9487, recall_val: 0.9810, auc_val: 0.9824
+loss_train: 3.1727, acc_train: 0.9524, recall_train: 0.9700, auc_train: 0.9663, loss_val: 2.1076, acc_val: 0.9231, recall_val: 0.9203, auc_val: 0.9764
+loss_train: 3.1164, acc_train: 0.9505, recall_train: 0.9683, auc_train: 0.9698, loss_val: 1.7627, acc_val: 0.9524, recall_val: 0.9865, auc_val: 0.9843
+loss_train: 3.4386, acc_train: 0.9469, recall_train: 0.9718, auc_train: 0.9681, loss_val: 1.5943, acc_val: 0.9487, recall_val: 0.9794, auc_val: 0.9836
+loss_train: 3.3271, acc_train: 0.9432, recall_train: 0.9681, auc_train: 0.9681, loss_val: 1.7683, acc_val: 0.9487, recall_val: 0.9822, auc_val: 0.9827
+loss_train: 4.0245, acc_train: 0.9148, recall_train: 0.9144, auc_train: 0.9654, loss_val: 2.2248, acc_val: 0.9505, recall_val: 0.9838, auc_val: 0.9820
+loss_train: 3.1280, acc_train: 0.9496, recall_train: 0.9637, auc_train: 0.9717, loss_val: 1.5415, acc_val: 0.9414, recall_val: 0.9625, auc_val: 0.9840
+loss_train: 2.7843, acc_train: 0.9551, recall_train: 0.9717, auc_train: 0.9816, loss_val: 1.6251, acc_val: 0.9524, recall_val: 0.9865, auc_val: 0.9861
+loss_train: 3.2146, acc_train: 0.9533, recall_train: 0.9693, auc_train: 0.9824, loss_val: 16.9484, acc_val: 0.4872, recall_val: 0.0000, auc_val: 0.9782
+loss_train: 7.4172, acc_train: 0.8388, recall_train: 0.8209, auc_train: 0.8921, loss_val: 1.5994, acc_val: 0.9487, recall_val: 0.9810, auc_val: 0.9779
+loss_train: 3.0200, acc_train: 0.9515, recall_train: 0.9712, auc_train: 0.9699, loss_val: 1.4984, acc_val: 0.9487, recall_val: 0.9810, auc_val: 0.9827
+loss_train: 2.8871, acc_train: 0.9524, recall_train: 0.9733, auc_train: 0.9746, loss_val: 1.5489, acc_val: 0.9487, recall_val: 0.9810, auc_val: 0.9830
+loss_train: 2.7133, acc_train: 0.9505, recall_train: 0.9692, auc_train: 0.9802, loss_val: 1.5919, acc_val: 0.9505, recall_val: 0.9838, auc_val: 0.9839
+loss_train: 3.6172, acc_train: 0.9277, recall_train: 0.9298, auc_train: 0.9814, loss_val: 2.3526, acc_val: 0.9560, recall_val: 0.9928, auc_val: 0.9900
+loss_train: 3.8070, acc_train: 0.9505, recall_train: 0.9673, auc_train: 0.9779, loss_val: 6.7915, acc_val: 0.6813, recall_val: 1.0000, auc_val: 0.9906
+loss_train: 4.2150, acc_train: 0.9176, recall_train: 0.9309, auc_train: 0.9588, loss_val: 1.6154, acc_val: 0.9505, recall_val: 0.9901, auc_val: 0.9876
+loss_train: 3.2364, acc_train: 0.9423, recall_train: 0.9557, auc_train: 0.9753, loss_val: 1.8496, acc_val: 0.9524, recall_val: 0.9865, auc_val: 0.9881
+loss_train: 2.7022, acc_train: 0.9542, recall_train: 0.9750, auc_train: 0.9837, loss_val: 1.2568, acc_val: 0.9524, recall_val: 0.9796, auc_val: 0.9901
+loss_train: 2.9387, acc_train: 0.9515, recall_train: 0.9702, auc_train: 0.9846, loss_val: 3.0729, acc_val: 0.8370, recall_val: 0.6936, auc_val: 0.9849
+loss_train: 2.9900, acc_train: 0.9359, recall_train: 0.9358, auc_train: 0.9798, loss_val: 1.2815, acc_val: 0.9432, recall_val: 0.9584, auc_val: 0.9900
+loss_train: 2.4863, acc_train: 0.9560, recall_train: 0.9646, auc_train: 0.9852, loss_val: 1.4609, acc_val: 0.9487, recall_val: 0.9865, auc_val: 0.9921
+loss_train: 2.1445, acc_train: 0.9551, recall_train: 0.9720, auc_train: 0.9912, loss_val: 1.8429, acc_val: 0.9377, recall_val: 0.8872, auc_val: 0.9935
+loss_train: 1.8961, acc_train: 0.9606, recall_train: 0.9763, auc_train: 0.9922, loss_val: 1.2043, acc_val: 0.9524, recall_val: 0.9383, auc_val: 0.9925
+loss_train: 2.8308, acc_train: 0.9487, recall_train: 0.9505, auc_train: 0.9824, loss_val: 1.2796, acc_val: 0.9432, recall_val: 0.9521, auc_val: 0.9902
+loss_train: 2.6817, acc_train: 0.9551, recall_train: 0.9756, auc_train: 0.9824, loss_val: 2.7469, acc_val: 0.8901, recall_val: 0.9963, auc_val: 0.9924
+loss_train: 2.7780, acc_train: 0.9441, recall_train: 0.9787, auc_train: 0.9798, loss_val: 1.5978, acc_val: 0.9322, recall_val: 0.9137, auc_val: 0.9898
+loss_train: 1.9237, acc_train: 0.9615, recall_train: 0.9716, auc_train: 0.9919, loss_val: 1.0398, acc_val: 0.9615, recall_val: 0.9859, auc_val: 0.9944
+loss_train: 1.8288, acc_train: 0.9625, recall_train: 0.9706, auc_train: 0.9932, loss_val: 2.1348, acc_val: 0.9267, recall_val: 0.9963, auc_val: 0.9941
+loss_train: 2.4180, acc_train: 0.9560, recall_train: 0.9687, auc_train: 0.9858, loss_val: 0.9379, acc_val: 0.9652, recall_val: 0.9865, auc_val: 0.9958
+loss_train: 3.3019, acc_train: 0.9332, recall_train: 0.9419, auc_train: 0.9766, loss_val: 17.6562, acc_val: 0.5055, recall_val: 0.0346, auc_val: 0.9750
+loss_train: 5.1868, acc_train: 0.9112, recall_train: 0.9122, auc_train: 0.9538, loss_val: 1.3046, acc_val: 0.9524, recall_val: 0.9865, auc_val: 0.9936
+loss_train: 2.3060, acc_train: 0.9551, recall_train: 0.9743, auc_train: 0.9882, loss_val: 1.2195, acc_val: 0.9542, recall_val: 0.9544, auc_val: 0.9932
+loss_train: 2.5635, acc_train: 0.9515, recall_train: 0.9680, auc_train: 0.9860, loss_val: 1.3701, acc_val: 0.9469, recall_val: 0.9614, auc_val: 0.9912
+loss_train: 2.5160, acc_train: 0.9542, recall_train: 0.9729, auc_train: 0.9838, loss_val: 1.1894, acc_val: 0.9451, recall_val: 0.9572, auc_val: 0.9928
+loss_train: 2.8529, acc_train: 0.9551, recall_train: 0.9777, auc_train: 0.9902, loss_val: 1.1599, acc_val: 0.9505, recall_val: 0.9838, auc_val: 0.9934
+loss_train: 2.3919, acc_train: 0.9579, recall_train: 0.9776, auc_train: 0.9865, loss_val: 1.2700, acc_val: 0.9469, recall_val: 0.9688, auc_val: 0.9898
+loss_train: 2.5908, acc_train: 0.9542, recall_train: 0.9733, auc_train: 0.9853, loss_val: 1.1338, acc_val: 0.9579, recall_val: 0.9928, auc_val: 0.9927
+loss_train: 2.1100, acc_train: 0.9570, recall_train: 0.9761, auc_train: 0.9909, loss_val: 1.2580, acc_val: 0.9432, recall_val: 0.9639, auc_val: 0.9893
+loss_train: 2.0459, acc_train: 0.9524, recall_train: 0.9607, auc_train: 0.9925, loss_val: 1.0449, acc_val: 0.9560, recall_val: 0.9859, auc_val: 0.9931
+loss_train: 1.8558, acc_train: 0.9597, recall_train: 0.9770, auc_train: 0.9933, loss_val: 1.1270, acc_val: 0.9542, recall_val: 0.9893, auc_val: 0.9931
+loss_train: 4.1676, acc_train: 0.8984, recall_train: 0.9067, auc_train: 0.9675, loss_val: 2.1211, acc_val: 0.9249, recall_val: 0.8649, auc_val: 0.9892
+loss_train: 3.0313, acc_train: 0.9432, recall_train: 0.9583, auc_train: 0.9801, loss_val: 1.2464, acc_val: 0.9469, recall_val: 0.9765, auc_val: 0.9895
+loss_train: 2.8259, acc_train: 0.9542, recall_train: 0.9779, auc_train: 0.9889, loss_val: 1.4968, acc_val: 0.9487, recall_val: 0.9865, auc_val: 0.9923
+loss_train: 3.2823, acc_train: 0.9322, recall_train: 0.9604, auc_train: 0.9802, loss_val: 1.4114, acc_val: 0.9359, recall_val: 0.9489, auc_val: 0.9892
+loss_train: 2.2520, acc_train: 0.9542, recall_train: 0.9701, auc_train: 0.9905, loss_val: 1.1293, acc_val: 0.9542, recall_val: 0.9893, auc_val: 0.9942
+loss_train: 2.4331, acc_train: 0.9533, recall_train: 0.9696, auc_train: 0.9910, loss_val: 2.7847, acc_val: 0.8352, recall_val: 0.6826, auc_val: 0.9844
+loss_train: 3.8048, acc_train: 0.9249, recall_train: 0.9063, auc_train: 0.9721, loss_val: 1.2864, acc_val: 0.9560, recall_val: 0.9928, auc_val: 0.9935
+loss_train: 2.0612, acc_train: 0.9533, recall_train: 0.9702, auc_train: 0.9917, loss_val: 0.9639, acc_val: 0.9579, recall_val: 0.9893, auc_val: 0.9949
+loss_train: 1.5930, acc_train: 0.9643, recall_train: 0.9788, auc_train: 0.9952, loss_val: 0.9067, acc_val: 0.9542, recall_val: 0.9775, auc_val: 0.9943
+Test set results: acc: 0.9587, f1_macro: 0.9580, f1_micro: 0.9587, precision: 0.9456, recall: 0.9726, auc: 0.9892, ap: 0.9907
+
+ERRORS:
+/home/asu/miniconda3/lib/python3.12/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+
+  0%|          | 0/50 [00:00<?, ?it/s]
+  2%|▏         | 1/50 [00:01<01:02,  1.28s/it]
+  4%|▍         | 2/50 [00:02<00:49,  1.02s/it]
+  6%|▌         | 3/50 [00:03<00:48,  1.02s/it]
+  8%|▊         | 4/50 [00:04<00:47,  1.04s/it]
+ 10%|█         | 5/50 [00:05<00:56,  1.25s/it]
+ 12%|█▏        | 6/50 [00:07<00:57,  1.31s/it]
+ 14%|█▍        | 7/50 [00:08<00:52,  1.22s/it]
+ 16%|█▌        | 8/50 [00:09<00:46,  1.10s/it]
+ 18%|█▊        | 9/50 [00:10<00:42,  1.04s/it]
+ 20%|██        | 10/50 [00:10<00:37,  1.06it/s]
+ 22%|██▏       | 11/50 [00:11<00:38,  1.01it/s]
+ 24%|██▍       | 12/50 [00:13<00:43,  1.13s/it]
+ 26%|██▌       | 13/50 [00:14<00:38,  1.04s/it]
+ 28%|██▊       | 14/50 [00:15<00:39,  1.09s/it]
+ 30%|███       | 15/50 [00:16<00:37,  1.08s/it]
+ 32%|███▏      | 16/50 [00:17<00:34,  1.00s/it]
+ 34%|███▍      | 17/50 [00:17<00:30,  1.09it/s]
+ 36%|███▌      | 18/50 [00:19<00:30,  1.04it/s]
+ 38%|███▊      | 19/50 [00:19<00:30,  1.03it/s]
+ 40%|████      | 20/50 [00:20<00:28,  1.06it/s]
+ 42%|████▏     | 21/50 [00:21<00:28,  1.02it/s]
+ 44%|████▍     | 22/50 [00:23<00:28,  1.03s/it]
+ 46%|████▌     | 23/50 [00:24<00:28,  1.07s/it]
+ 48%|████▊     | 24/50 [00:25<00:28,  1.10s/it]
+ 50%|█████     | 25/50 [00:26<00:25,  1.03s/it]
+ 52%|█████▏    | 26/50 [00:27<00:27,  1.13s/it]
+ 54%|█████▍    | 27/50 [00:28<00:26,  1.14s/it]
+ 56%|█████▌    | 28/50 [00:29<00:21,  1.02it/s]
+ 58%|█████▊    | 29/50 [00:31<00:25,  1.20s/it]
+ 60%|██████    | 30/50 [00:31<00:21,  1.10s/it]
+ 62%|██████▏   | 31/50 [00:33<00:20,  1.08s/it]
+ 64%|██████▍   | 32/50 [00:34<00:20,  1.14s/it]
+ 66%|██████▌   | 33/50 [00:35<00:18,  1.12s/it]
+ 68%|██████▊   | 34/50 [00:36<00:17,  1.10s/it]
+ 70%|███████   | 35/50 [00:38<00:19,  1.28s/it]
+ 72%|███████▏  | 36/50 [00:38<00:15,  1.14s/it]
+ 74%|███████▍  | 37/50 [00:40<00:14,  1.15s/it]
+ 76%|███████▌  | 38/50 [00:41<00:13,  1.16s/it]
+ 78%|███████▊  | 39/50 [00:43<00:14,  1.34s/it]
+ 80%|████████  | 40/50 [00:44<00:12,  1.26s/it]
+ 82%|████████▏ | 41/50 [00:45<00:10,  1.19s/it]
+ 84%|████████▍ | 42/50 [00:46<00:09,  1.17s/it]
+ 86%|████████▌ | 43/50 [00:47<00:08,  1.24s/it]
+ 88%|████████▊ | 44/50 [00:48<00:06,  1.11s/it]
+ 90%|█████████ | 45/50 [00:50<00:06,  1.29s/it]
+ 92%|█████████▏| 46/50 [00:51<00:04,  1.20s/it]
+ 94%|█████████▍| 47/50 [00:52<00:03,  1.22s/it]
+ 96%|█████████▌| 48/50 [00:53<00:02,  1.16s/it]
+ 98%|█████████▊| 49/50 [00:54<00:01,  1.18s/it]
+100%|██████████| 50/50 [00:55<00:00,  1.20s/it]
+100%|██████████| 50/50 [00:55<00:00,  1.12s/it]

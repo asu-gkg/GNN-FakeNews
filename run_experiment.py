@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import argparse
 import os
 import subprocess
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # 使用非交互式后端
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -113,7 +118,8 @@ for i, (metric, title) in enumerate(zip(metrics, titles)):
 
 plt.tight_layout()
 plt.savefig('experiment_results.png')
-plt.show()
+# plt.show()  # 注释掉show()调用，避免显示问题
+plt.close()  # 确保图像关闭
 
 # 打印结果摘要
 print("\n=== 实验结果摘要 ===")

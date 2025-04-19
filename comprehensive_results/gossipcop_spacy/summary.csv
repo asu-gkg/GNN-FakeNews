@@ -1,0 +1,5 @@
+,time,time,accuracy,accuracy,f1_macro,f1_macro,auc,auc,ap,ap
+,mean,std,mean,std,mean,std,mean,std,mean,std
+model,,,,,,,,,,
+better_gnn,2.5326790809631348,0.018406371681677643,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+gnn,2.4642728567123413,0.012959144392735654,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

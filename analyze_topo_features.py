@@ -1,6 +1,8 @@
 import os
 import numpy as np
 import torch
+import matplotlib
+matplotlib.use('Agg')  # 使用非交互式后端
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
@@ -10,8 +12,12 @@ from utils.data_loader import FNNDataset, ToUndirected
 from gnn_model.gnn_topo import extract_graph_features
 
 # Set parameters
-dataset_name = 'politifact'  # or 'gossipcop'
+# dataset_name = 'politifact'  # or 'gossipcop'
+# feature_type = 'profile'     # or 'bert', 'spacy', 'content'
+
+dataset_name = 'gossipcop'  # or 'gossipcop'
 feature_type = 'profile'     # or 'bert', 'spacy', 'content'
+
 
 # Load dataset
 dataset = FNNDataset(root='data', feature=feature_type, empty=False, name=dataset_name, transform=ToUndirected())
@@ -69,13 +75,18 @@ if dataset_name == 'politifact':
 else:
     x_feature, y_feature = 'Average Degree', 'Clustering Coefficient'
     
-sns.scatterplot(x=x_feature, y=y_feature, hue='label', 
+scatter = sns.scatterplot(x=x_feature, y=y_feature, hue='label', 
                 palette={0: 'blue', 1: 'red'}, 
                 data=df, alpha=0.7,
                 hue_norm=[0, 1], 
                 size='graph_size', sizes=(20, 200))
 plt.title(f'{x_feature} vs {y_feature}')
-plt.legend(title='Label', labels=['Real News', 'Fake News'])
+# 修复图例显示问题
+handles, labels = scatter.get_legend_handles_labels()
+plt.legend(handles=handles[:2], labels=['Real News', 'Fake News'], title='Label', loc='best')
+# 确保轴标签显示正确
+plt.xlabel(x_feature)
+plt.ylabel(y_feature)
 
 # 3. Histogram comparing graph size distribution for real/fake news
 plt.subplot(2, 2, 3)
@@ -96,10 +107,11 @@ sns.heatmap(corr, mask=mask, cmap="coolwarm", vmax=1, vmin=-1, center=0,
             square=True, linewidths=.5, annot=True, fmt=".2f")
 plt.title('Topological Feature Correlation')
 
-# Save the figure
-plt.tight_layout()
-plt.savefig(f'{dataset_name}_{feature_type}_topo_analysis.png', dpi=300)
-plt.show()
+# 调整图的整体布局，确保子图不会重叠
+plt.figure(1).tight_layout(pad=3.0)
+plt.savefig(f'{dataset_name}_{feature_type}_topo_analysis.png', dpi=300, bbox_inches='tight')
+# plt.show()  # 注释掉show()调用，避免显示问题
+plt.close()  # 确保图像关闭
 
 # Calculate feature discrimination between real and fake news
 print(f"\n=== {dataset_name} Dataset Topological Feature Analysis ===")

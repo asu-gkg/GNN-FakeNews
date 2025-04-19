@@ -1,0 +1,38 @@
+
+================================================================================
+Running gnn (Run 1/2)
+================================================================================
+Error parsing results for gnn run 1: Could not find 'Test set results:' line in output. Please check model output format.
+Please check output file: comprehensive_results/gossipcop_spacy/gnn_run1.log
+
+================================================================================
+Running better_gnn (Run 1/2)
+================================================================================
+Error parsing results for better_gnn run 1: Could not find '>>> Test' line in output. Please check model output format.
+Please check output file: comprehensive_results/gossipcop_spacy/better_gnn_run1.log
+
+================================================================================
+Running gnn (Run 2/2)
+================================================================================
+Error parsing results for gnn run 2: Could not find 'Test set results:' line in output. Please check model output format.
+Please check output file: comprehensive_results/gossipcop_spacy/gnn_run2.log
+
+================================================================================
+Running better_gnn (Run 2/2)
+================================================================================
+Error parsing results for better_gnn run 2: Could not find '>>> Test' line in output. Please check model output format.
+Please check output file: comprehensive_results/gossipcop_spacy/better_gnn_run2.log
+
+
+Performance Comparison Summary:
++------------+-----------------+-----------------+-----------------+--------------+
+|   Model    |    Accuracy     |    F1 Score     |       AUC       |   Runtime    |
++------------+-----------------+-----------------+-----------------+--------------+
+|    gnn     | 0.0000 ± 0.0000 | 0.0000 ± 0.0000 | 0.0000 ± 0.0000 | 2.46s ± 0.01 |
+| better_gnn | 0.0000 ± 0.0000 | 0.0000 ± 0.0000 | 0.0000 ± 0.0000 | 2.53s ± 0.02 |
++------------+-----------------+-----------------+-----------------+--------------+
+
+Results saved to comprehensive_results/gossipcop_spacy directory
+- CSV files: all_results.csv, summary.csv
+- Performance comparison chart: performance_comparison.png
+- Run logs: gnn_run*.log, better_gnn_run*.log
