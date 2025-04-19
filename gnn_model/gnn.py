@@ -103,6 +103,7 @@ parser.add_argument('--concat', type=bool, default=True, help='whether concat ne
 parser.add_argument('--multi_gpu', type=bool, default=False, help='multi-gpu mode')
 parser.add_argument('--feature', type=str, default='bert', help='feature type, [profile, spacy, bert, content]')
 parser.add_argument('--model', type=str, default='sage', help='model type, [gcn, gat, sage]')
+parser.add_argument('--analysis_mode', type=str, default='none', help='analysis mode, [none, feature_importance]')
 
 args = parser.parse_args()
 torch.manual_seed(args.seed)
@@ -135,6 +136,129 @@ if args.multi_gpu:
 	model = DataParallel(model)
 model = model.to(args.device)
 optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+
+
+class FeatureImportanceAnalyzer:
+    """
+    分析节点特征与图结构对假新闻检测的相对重要性
+    
+    通过对比三种情况下的模型性能来评估不同组件的重要性：
+    1. 完整模型（使用节点特征和图结构）
+    2. 仅使用节点特征的模型（随机化边连接）
+    3. 仅使用图结构的模型（随机化节点特征）
+    """
+    def __init__(self, args, model, test_loader):
+        self.args = args
+        self.original_model = model
+        self.test_loader = test_loader
+        self.device = args.device
+        
+    def randomize_edges(self, data):
+        """随机化图的边结构，保持节点特征不变"""
+        if not self.args.multi_gpu:
+            num_nodes = data.x.size(0)
+            # 创建随机边连接
+            random_edge_index = torch.randint(0, num_nodes, (2, num_nodes*2), device=self.device)
+            data_copy = cp.copy(data)
+            data_copy.edge_index = random_edge_index
+            return data_copy
+        else:
+            # 多GPU情况下的处理
+            data_copies = []
+            for d in data:
+                num_nodes = d.x.size(0)
+                random_edge_index = torch.randint(0, num_nodes, (2, num_nodes*2), device=d.x.device)
+                d_copy = cp.copy(d)
+                d_copy.edge_index = random_edge_index
+                data_copies.append(d_copy)
+            return data_copies
+            
+    def randomize_features(self, data):
+        """随机化节点特征，保持图结构不变"""
+        if not self.args.multi_gpu:
+            # 创建随机节点特征
+            num_nodes = data.x.size(0)
+            random_features = torch.randn(num_nodes, data.x.size(1), device=self.device)
+            data_copy = cp.copy(data)
+            data_copy.x = random_features
+            return data_copy
+        else:
+            # 多GPU情况下的处理
+            data_copies = []
+            for d in data:
+                num_nodes = d.x.size(0)
+                random_features = torch.randn(num_nodes, d.x.size(1), device=d.x.device)
+                d_copy = cp.copy(d)
+                d_copy.x = random_features
+                data_copies.append(d_copy)
+            return data_copies
+    
+    @torch.no_grad()
+    def evaluate_importance(self):
+        """评估节点特征和图结构的相对重要性"""
+        self.original_model.eval()
+        
+        # 测试原始模型
+        original_results, _ = compute_test(self.test_loader)
+        original_acc = original_results[0]
+        print(f"原始模型准确率: {original_acc:.4f}")
+        
+        # 测试随机边结构的模型（仅使用节点特征）
+        feature_only_acc_list = []
+        for data in self.test_loader:
+            if not self.args.multi_gpu:
+                data = data.to(self.args.device)
+                randomized_data = self.randomize_edges(data)
+                out = self.original_model(randomized_data)
+                y = data.y
+                pred = out.max(1)[1]
+                feature_only_acc_list.append(pred.eq(y).sum().item() / len(y))
+            else:
+                randomized_data = self.randomize_edges(data)
+                out = self.original_model(randomized_data)
+                y = torch.cat([d.y.unsqueeze(0) for d in data]).squeeze().to(out.device)
+                pred = out.max(1)[1]
+                feature_only_acc_list.append(pred.eq(y).sum().item() / len(y))
+        
+        feature_only_acc = sum(feature_only_acc_list) / len(feature_only_acc_list)
+        print(f"仅使用节点特征的准确率: {feature_only_acc:.4f}")
+        
+        # 测试随机节点特征的模型（仅使用图结构）
+        structure_only_acc_list = []
+        for data in self.test_loader:
+            if not self.args.multi_gpu:
+                data = data.to(self.args.device)
+                randomized_data = self.randomize_features(data)
+                out = self.original_model(randomized_data)
+                y = data.y
+                pred = out.max(1)[1]
+                structure_only_acc_list.append(pred.eq(y).sum().item() / len(y))
+            else:
+                randomized_data = self.randomize_features(data)
+                out = self.original_model(randomized_data)
+                y = torch.cat([d.y.unsqueeze(0) for d in data]).squeeze().to(out.device)
+                pred = out.max(1)[1]
+                structure_only_acc_list.append(pred.eq(y).sum().item() / len(y))
+        
+        structure_only_acc = sum(structure_only_acc_list) / len(structure_only_acc_list)
+        print(f"仅使用图结构的准确率: {structure_only_acc:.4f}")
+        
+        # 计算相对重要性
+        total_performance = original_acc
+        feature_importance = (feature_only_acc - 0.5) / (total_performance - 0.5) * 100 if total_performance > 0.5 else 0
+        structure_importance = (structure_only_acc - 0.5) / (total_performance - 0.5) * 100 if total_performance > 0.5 else 0
+        
+        print(f"\n特征与结构重要性分析结果:")
+        print(f"节点特征相对重要性: {feature_importance:.2f}%")
+        print(f"图结构相对重要性: {structure_importance:.2f}%")
+        
+        return {
+            "original_acc": original_acc,
+            "feature_only_acc": feature_only_acc,
+            "structure_only_acc": structure_only_acc,
+            "feature_importance": feature_importance,
+            "structure_importance": structure_importance
+        }
 
 
 if __name__ == '__main__':
@@ -173,3 +297,20 @@ if __name__ == '__main__':
 	[acc, f1_macro, f1_micro, precision, recall, auc, ap], test_loss = compute_test(test_loader, verbose=False)
 	print(f'Test set results: acc: {acc:.4f}, f1_macro: {f1_macro:.4f}, f1_micro: {f1_micro:.4f}, '
 		  f'precision: {precision:.4f}, recall: {recall:.4f}, auc: {auc:.4f}, ap: {ap:.4f}')
+
+	# 如果启用了特征重要性分析模式
+	if args.analysis_mode == 'feature_importance':
+		print("\n开始进行节点特征与图结构重要性分析...")
+		analyzer = FeatureImportanceAnalyzer(args, model, test_loader)
+		importance_results = analyzer.evaluate_importance()
+		
+		print("\n分析总结:")
+		if importance_results["feature_importance"] > importance_results["structure_importance"]:
+			print(f"在{args.dataset}数据集上，节点特征对假新闻检测的贡献明显大于图结构。")
+			print(f"这表明文本内容特征是判断新闻真假的关键因素。")
+		elif importance_results["structure_importance"] > importance_results["feature_importance"]:
+			print(f"在{args.dataset}数据集上，图结构对假新闻检测的贡献明显大于节点特征。")
+			print(f"这表明新闻传播的社交网络结构是判断新闻真假的关键因素。")
+		else:
+			print(f"在{args.dataset}数据集上，节点特征和图结构对假新闻检测的贡献相近。")
+			print(f"这表明文本内容和传播结构都是判断新闻真假的重要因素。")

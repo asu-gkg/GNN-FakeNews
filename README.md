@@ -130,3 +130,25 @@ under our dataset.
 You are welcomed to submit your model code, hyper-parameters, and results to this repo via create a pull request.
 After verifying the results, your model will be added to the repo and the result will be updated to the [benchmark](https://paperswithcode.com/dataset/upfd).
 Please email to [ytongdou@gmail.com](mailto:ytongdou@gmail.com) for other inquiries.
+
+
+PYTHONPATH=. python gnn_model/gnn.py --dataset politifact --model gcn --feature profile --batch_size 64 --device cuda:0
+Test set results: acc: 0.7919, f1_macro: 0.7899, f1_micro: 0.7919, precision: 0.8344, recall: 0.7452, auc: 0.8385, ap: 0.8514
+
+
+PYTHONPATH=. python gnn_model/gnn.py  --dataset politifact --model sage --analysis_mode feature_importance
+
+
+PYTHONPATH=. python gnn_model/better_gnn.py \
+  --dataset politifact \
+  --feature bert \
+  --device cuda:0 \
+  --batch_size 64 \
+  --epochs 50 \
+  --lr 0.001 \
+  --weight_decay 0.0005
+
+>>> Test  Acc 0.8778  F1 0.8776  AUC 0.9480
+
+
+PYTHONPATH=. python compare_models.py --dataset politifact --feature bert --epochs 30 --runs 3
